@@ -15,9 +15,9 @@ func (eng *ReplayEngine) Start(out chan<- *model.Event, sessionStart time.Time) 
 	eng.sortEventData()
 
 	for i, e := range eng.EventData.EventModels {
-		// skipForward := 26 * time.Minute + 30 * time.Second
-		// if e.GetDateStart().Before(sessionStart.Add(skipForward)) {
-		if e.GetDateStart().Before(sessionStart) {
+		skipForward := 26 * time.Minute + 30 * time.Second
+		if e.GetDateStart().Before(sessionStart.Add(skipForward)) {
+		// if e.GetDateStart().Before(sessionStart) {
 			continue
 		}
 		if i > 0 { // prevents sleep for first event only. i-1 crashes if i = 0

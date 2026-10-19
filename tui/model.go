@@ -12,7 +12,7 @@ import (
 
 type Model struct {
 	Window   Window
-	Engine   *aggregator.Engine
+	Snapshotter   *aggregator.Snapshotter
 	offset   uint
 	isPaused bool
 }
@@ -54,7 +54,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m Model) View() tea.View {
-	snapshot := m.Engine.GetSnapshot(0)
+	snapshot := m.Snapshotter.GetSnapshot(0)
 	sessionBar := view.SessionBar(snapshot.SessionBar)
 	legendBar := view.LegendBar()
 	positionColumn := view.PositionsColumn()

@@ -29,14 +29,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	ag := aggregator.NewEngine(hs)
+	receiver, snapShotter := aggregator.NewAggregator(hs)
 
 	p := tea.NewProgram(tui.Model{
 		Window: tui.Window{},
-		Engine: ag,
+		Snapshotter: snapShotter,
 	})
 
-	go ag.Start()
+	go receiver.Start()
 
 	if _, err := p.Run(); err != nil {
 		log.Fatal(err)

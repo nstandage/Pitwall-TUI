@@ -8,7 +8,7 @@
 *.so
 *.dylib
 Design/
-
+.DS_Store
 
 # Logs
 *.log
